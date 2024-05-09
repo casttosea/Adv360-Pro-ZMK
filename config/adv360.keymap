@@ -28,6 +28,32 @@
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
+  new_behavior_mod_morph: new_behavior_mod_morph {
+            compatible = "zmk,behavior-mod-morph";
+            label = "NEW_BEHAVIOR_MOD_MORPH";
+            bindings = <&trans>, <&new_macro>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_RSFT)>;
+        };
+
+        Mo_Mor_trans_Layer2: Mo_Mor_trans_Layer2 {
+            compatible = "zmk,behavior-mod-morph";
+            label = "MO_MOR_TRANS_LAYER2";
+            bindings = <&trans>, <&tog 1>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        Mo_Mor_bkspc_Layer2: Mo_Mor_bkspc_Layer2 {
+            compatible = "zmk,behavior-mod-morph";
+            label = "MO_MOR_BKSPC_LAYER2";
+            bindings = <&kp BACKSPACE>, <&tog 1>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
     };
     combos {
         compatible = "zmk,combos";
