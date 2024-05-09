@@ -63,14 +63,32 @@
 
     keymap {
         compatible = "zmk,keymap";
-
         default_layer {
             bindings = <
-&kp EQUAL  &kp N1     &kp N2    &kp N3    &kp N4     &kp N5  &tog 1                                                   &mo 3      &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &kp MINUS
-&kp TAB    &kp Q      &kp W     &kp E     &kp R      &kp T   &kp G                                                    &none      &kp Y   &kp U   &kp I      &kp O     &kp P     &kp BSLH
-&kp ESC    &kp A      &kp S     &kp D     &kp F      &kp G   &none     &kp LCTRL  &kp LALT      &kp LGUI   &kp RCTRL  &none      &kp H   &kp J   &kp K      &kp L     &kp SEMI  &kp SQT
-&kp LSHFT  &kp Z      &kp X     &kp C     &kp V      &kp B                        &kp HOME      &kp PG_UP                        &kp N   &kp M   &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
-&mo 2      &kp GRAVE  &kp CAPS  &kp LEFT  &kp RIGHT          &kp BSPC  &kp DEL    &kp END       &kp PG_DN  &kp ENTER  &kp SPACE          &kp UP  &kp DOWN   &kp LBKT  &kp RBKT  &mo 2
+&kp EQUAL  &kp N1     &kp N2    &kp N3    &kp N4     &kp N5  &tog 4                                                               &mo 6      &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &kp MINUS
+&kp TAB    &kp Q      &kp W     &kp E     &kp R      &kp T   &tog 1                                                               &sl 2      &kp Y   &kp U   &kp I      &kp O     &kp P     &kp BSLH
+&kp ESC    &kp A      &kp S     &kp D     &kp F      &kp G   &tog 3                &kp LCTRL  &kp LALT      &kp LGUI   &kp RCTRL  &tog 3     &kp H   &kp J   &kp K      &kp L     &kp SEMI  &kp SQT
+&kp LSHFT  &kp Z      &kp X     &kp C     &kp V      &kp B                                    &kp HOME      &kp PG_UP                        &kp N   &kp M   &kp COMMA  &kp DOT   &kp FSLH  &kp K_CONTEXT_MENU
+&sl 5      &kp GRAVE  &kp CAPS  &kp LEFT  &kp RIGHT          &Mo_Mor_bkspc_Layer2  &kp DEL    &kp END       &kp PG_DN  &kp ENTER  &kp SPACE          &kp UP  &kp DOWN   &kp LBKT  &kp RBKT  &kp RSHFT
+            >;
+        };
+ layer_MacroMainLayer {
+            bindings = <
+&trans   &trans  &trans  &trans  &trans  &trans  &trans                                                 &trans     &trans   &kp C_VOL_DN      &kp LS(C_VOL_UP)   &kp C_MUTE   &kp LC(F12)  &trans
+&trans   &trans  &trans  &trans  &trans  &trans  &trans                                                 &tog 2     &trans   &kp LG(LC(LEFT))  &kp LG(LC(RIGHT))  &trans       &trans       &trans
+&kp ESC  &trans  &trans  &tog 2  &to 2   &trans  &trans  &kp LCTRL  &kp LALT      &kp LGUI   &kp RCTRL  &trans     &kp ESC  &kp LA(TAB)       &kp LC(LA(TAB))    &kp LG(TAB)  &tog 2       &trans
+&tog 2   &trans  &trans  &trans  &trans  &trans                     &kp HOME      &kp PG_UP                        &trans   &kp LC(TAB)       &kp LC(LS(TAB))    &trans       &trans       &tog 2
+&tog 2   &trans  &trans  &trans  &trans          &tog 2  &kp DEL    &kp END       &kp PG_DN  &kp ENTER  &kp SPACE           &kp UP            &kp DOWN           &trans       &trans       &mo 5
+            >;
+        };
+
+        MouseLayer {
+            bindings = <
+&none    &none  &none  &kp KP_N0     &kp KP_N5    &kp KP_DOT  &none                                        &none       &none    &kp KP_NUM  &none      &none      &none         &none
+&none    &none  &none  &none         &none        &none       &trans                                       &trans      &none    &none       &kp KP_N8  &none      &kp KP_MINUS  &none
+&kp ESC  &none  &none  &kp KP_MINUS  &kp KP_PLUS  &tog 3      &tog 3     &trans  &none      &none  &trans  &tog 3      &kp ESC  &kp KP_N4   &kp KP_N2  &kp KP_N6  &kp KP_PLUS   &none
+&tog 3   &none  &none  &none         &none        &none                          &none      &none                      &tog 3   &none       &none      &none      &none         &kp SCROLLLOCK
+&trans   &none  &none  &kp LEFT      &kp RIGHT                &kp KP_N0  &none   &none      &none  &trans  &kp KP_DOT           &kp UP      &kp DOWN   &none      &none         &kp SLCK
             >;
         };
 
@@ -84,15 +102,17 @@
             >;
         };
 
-        fn {
+     
+        layer_fn {
             bindings = <
-&kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F6  &tog 1                                      &mo 3   &kp F7  &kp F8  &kp F9  &kp F10  &kp F11  &kp F12
-&trans  &trans  &trans  &trans  &trans  &trans  &none                                       &none   &trans  &trans  &trans  &trans   &trans   &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &none   &trans  &trans      &trans  &trans  &none   &trans  &trans  &trans  &trans   &trans   &trans
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                  &trans  &trans  &trans  &trans   &trans   &trans
-&trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans          &trans  &trans  &trans   &trans   &trans
+&none   &kp F1  &kp F2         &kp F3                   &kp F4  &kp F5  &tog 4                                         &mo 6   &kp F1   &kp F2   &kp F3   &kp F4   &kp F5   &none
+&trans  &trans  &trans         &trans                   &trans  &trans  &tog 7                                         &none   &kp F6   &kp F7   &kp F8   &kp F9   &kp F10  &none
+&trans  &trans  &trans         &trans                   &none   &trans  &none   &kt LCTRL  &trans      &trans  &trans  &none   &kp F11  &kp F12  &kp F13  &kp F14  &kp F15  &trans
+&trans  &trans  &new_macro4 M  &new_behavior_mod_morph  &trans  &trans                     &trans      &trans                  &kp F16  &kp F17  &kp F18  &kp F19  &kp F20  &trans
+&to 0   &trans  &trans         &trans                   &trans          &trans  &trans     &trans      &trans  &trans  &trans           &kp F21  &kp F22  &kp F23  &kp F24  &trans
             >;
         };
+
 
         mod {
             bindings = <
