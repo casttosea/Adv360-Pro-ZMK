@@ -175,14 +175,15 @@
             >;
         };
 
-        layer_6 {
+        layer_Number_Row_Mod {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                                      &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &kp KP_N0  &kp KP_N5  &kp KP_DOT  &trans                                      &trans  &trans  &kp C_VOL_DN      &kp LS(C_VOL_UP)   &kp C_MUTE  &kp LC(F12)  &trans
+&trans  &trans  &trans  &trans     &trans     &trans      &trans                                      &trans  &trans  &trans  &trans  &trans  &trans       &trans
+&trans  &trans  &trans  &trans     &trans     &trans      &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans       &trans
+&trans  &trans  &trans  &trans     &trans     &trans                      &trans      &trans                  &trans  &trans  &trans  &trans  &trans       &trans
+&trans  &trans  &trans  &trans     &trans                 &trans  &trans  &trans      &trans  &trans  &trans          &trans  &trans  &trans  &trans       &trans
             >;
         };
+
     };
 };
