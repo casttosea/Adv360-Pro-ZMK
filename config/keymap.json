@@ -1,188 +1,38 @@
-#include <behaviors.dtsi>
-#include <dt-bindings/zmk/backlight.h>
-#include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/outputs.h>
-#include <dt-bindings/zmk/rgb.h>
-
-/ {
-    behaviors {
-        #include "macros.dtsi"
-      #include "version.dtsi"
-      #ifndef VERSION_MACRO
-
-        macro_ver: macro_ver {
-            compatible = "zmk,behavior-macro";
-            label = "macro_version";
-            #binding-cells = <0>;
-            bindings = <&kp RET>;
-        };
-
-        #endif
-
-        hm: homerow_mods {
-            compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_MODS";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick_tap_ms = <175>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
-        };
-
-        new_behavior_mod_morph: new_behavior_mod_morph {
-            compatible = "zmk,behavior-mod-morph";
-            label = "NEW_BEHAVIOR_MOD_MORPH";
-            bindings = <&trans>, <&new_macro>;
-
-            #binding-cells = <0>;
-            mods = <(MOD_RSFT)>;
-        };
-
-        Mo_Mor_trans_Layer2: Mo_Mor_trans_Layer2 {
-            compatible = "zmk,behavior-mod-morph";
-            label = "MO_MOR_TRANS_LAYER2";
-            bindings = <&trans>, <&tog 1>;
-
-            #binding-cells = <0>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        Mo_Mor_bkspc_Layer2: Mo_Mor_bkspc_Layer2 {
-            compatible = "zmk,behavior-mod-morph";
-            label = "MO_MOR_BKSPC_LAYER2";
-            bindings = <&kp BACKSPACE>, <&tog 1>;
-
-            #binding-cells = <0>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-    };
-
-    combos {
-        compatible = "zmk,combos";
-
-        control__a_sw {
-            bindings = <&tog 6>;
-            key-positions = <2 3>;
-            layers = <0 7 1>;
-        };
-
-        sd_toMacro {
-            bindings = <&sl 2>;
-            key-positions = <32 41>;
-            layers = <0 2 7 3 1>;
-            slow-release;
-        };
-
-        mouseTog_combo {
-            bindings = <&tog 3>;
-            key-positions = <55 50>;
-            layers = <0 3 1 7 2>;
-        };
-
-        fnbk_spc {
-            bindings = <&tog 8>;
-            key-positions = <60 65>;
-            layers = <0 5 7 8 1>;
-        };
-    };
-
-    macros {
-        new_macro: new_macro {
-            compatible = "zmk,behavior-macro";
-            label = "NEW_MACRO";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_SHIFT &kp M &kp Y &kp SPACE &kp M &kp A &kp C &kp R &kp O &kp EXCL>;
-        };
-
-        new_macro4: new_macro4 {
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            bindings =
-                <&macro_param_1to1>,
-                <&macro_press>,
-                <&kp MACRO_PLACEHOLDER>,
-                <&macro_pause_for_release>,
-                <&macro_param_1to1>,
-                <&macro_release>,
-                <&kp MACRO_PLACEHOLDER>;
-
-            label = "NEW_MACRO4";
-        };
-    };
-
-    keymap {
-        compatible = "zmk,keymap";
-
-        default_layer {
-            bindings = <
-&kp EQUAL  &kp N1     &kp N2    &kp N3    &kp N4     &kp N5  &tog 4                                                        &mo 5      &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &kp MINUS
-&kp TAB    &kp Q      &kp W     &kp E     &kp R      &kp T   &tog 1                                                        &sl 2      &kp Y   &kp U   &kp I      &kp O     &kp P     &kp BSLH
-&kp ESC    &kp A      &kp S     &kp D     &kp F      &kp G   &tog 3         &kp LCTRL  &kp LALT      &kp LGUI   &kp RCTRL  &tog 3     &kp H   &kp J   &kp K      &kp L     &kp SEMI  &kp SQT
-&kp LSHFT  &kp Z      &kp X     &kp C     &kp V      &kp B                             &kp HOME      &kp PG_UP                        &kp N   &kp M   &kp COMMA  &kp DOT   &kp FSLH  &kp K_CONTEXT_MENU
-&sl 4      &kp GRAVE  &kp CAPS  &kp LEFT  &kp RIGHT          &kp BACKSPACE  &kp DEL    &kp END       &kp PG_DN  &kp ENTER  &kp SPACE          &kp UP  &kp DOWN   &kp LBKT  &kp RBKT  &kp RSHFT
-            >;
-        };
-
-        keypad {
-            bindings = <
-&kp EQUAL  &kp N1     &kp N2    &kp N3    &kp N4     &kp N5  &trans                                                   &mo 3      &kp N6  &kp KP_NUM  &kp KP_EQUAL  &kp KP_DIVIDE  &kp KP_MULTIPLY  &kp MINUS
-&kp TAB    &kp Q      &kp W     &kp E     &kp R      &kp T   &trans                                                   &none      &kp Y   &kp KP_N7   &kp KP_N8     &kp KP_N9      &kp KP_MINUS     &kp BSLH
-&kp ESC    &kp A      &kp S     &kp D     &kp F      &kp G   &none     &kp LCTRL  &kp LALT      &kp LGUI   &kp RCTRL  &none      &kp H   &kp KP_N4   &kp KP_N5     &kp KP_N6      &kp KP_PLUS      &kp SQT
-&kp LSHFT  &kp Z      &kp X     &kp C     &kp V      &kp B                        &kp HOME      &kp PG_UP                        &kp N   &kp KP_N1   &kp KP_N2     &kp KP_N3      &kp KP_ENTER     &kp RSHFT
-&mo 2      &kp GRAVE  &kp CAPS  &kp LEFT  &kp RIGHT          &kp BSPC  &kp DEL    &kp END       &kp PG_DN  &kp ENTER  &kp KP_N0          &kp UP      &kp DOWN      &kp KP_DOT     &kp RBKT         &mo 2
-            >;
-        };
-
-        layer_MacroMainLayer {
-            bindings = <
-&trans   &trans  &trans  &trans  &trans  &trans  &trans                                                 &trans     &trans   &kp C_VOL_DN      &kp LS(C_VOL_UP)   &kp C_MUTE   &kp LC(F12)  &trans
-&trans   &trans  &trans  &trans  &trans  &trans  &trans                                                 &tog 2     &trans   &kp LG(LC(LEFT))  &kp LG(LC(RIGHT))  &trans       &trans       &trans
-&kp ESC  &trans  &trans  &tog 2  &to 2   &trans  &trans  &kp LCTRL  &kp LALT      &kp LGUI   &kp RCTRL  &trans     &kp ESC  &kp LA(TAB)       &kp LC(LA(TAB))    &kp LG(TAB)  &tog 2       &trans
-&tog 2   &trans  &trans  &trans  &trans  &trans                     &kp HOME      &kp PG_UP                        &trans   &kp LC(TAB)       &kp LC(LS(TAB))    &trans       &trans       &tog 2
-&tog 2   &trans  &trans  &trans  &trans          &tog 2  &kp DEL    &kp END       &kp PG_DN  &kp ENTER  &kp SPACE           &kp UP            &kp DOWN           &trans       &trans       &mo 5
-            >;
-        };
-
-        MouseLayer {
-            bindings = <
-&none    &none  &none  &kp KP_N0     &kp KP_N5    &kp KP_DOT  &none                                        &none       &none    &kp KP_NUM  &none      &none      &none         &none
-&none    &none  &none  &none         &none        &none       &trans                                       &trans      &none    &none       &kp KP_N8  &none      &kp KP_MINUS  &none
-&kp ESC  &none  &none  &kp KP_MINUS  &kp KP_PLUS  &tog 3      &tog 3     &trans  &none      &none  &trans  &tog 3      &kp ESC  &kp KP_N4   &kp KP_N2  &kp KP_N6  &kp KP_PLUS   &none
-&tog 3   &none  &none  &none         &none        &none                          &none      &none                      &tog 3   &none       &none      &none      &none         &kp SCROLLLOCK
-&trans   &none  &none  &kp LEFT      &kp RIGHT                &kp KP_N0  &none   &none      &none  &trans  &kp KP_DOT           &kp UP      &kp DOWN   &none      &none         &kp SLCK
-            >;
-        };
-
-        layer_fn {
-            bindings = <
-&none   &kp F1  &kp F2  &kp F3                   &kp F4  &kp F5  &tog 4                                         &mo 6   &kp F1   &kp F2   &kp F3   &kp F4   &kp F5   &none
-&trans  &trans  &trans  &trans                   &trans  &trans  &tog 7                                         &none   &kp F6   &kp F7   &kp F8   &kp F9   &kp F10  &none
-&trans  &trans  &trans  &trans                   &none   &trans  &none   &kt LCTRL  &trans      &trans  &trans  &none   &kp F11  &kp F12  &kp F13  &kp F14  &kp F15  &trans
-&trans  &trans  &none   &new_behavior_mod_morph  &trans  &trans                     &trans      &trans                  &kp F16  &kp F17  &kp F18  &kp F19  &kp F20  &trans
-&to 0   &trans  &trans  &trans                   &trans          &trans  &trans     &trans      &trans  &trans  &trans           &kp F21  &kp F22  &kp F23  &kp F24  &trans
-            >;
-        };
-
-        mod {
-            bindings = <
-&none  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &none                                                  &trans                  &none  &none       &none       &none  &none  &none
-&none  &none         &none         &none         &none         &none         &bootloader                                            &bootloader             &none  &none       &none       &none  &none  &none
-&none  &none         &none         &out OUT_TOG  &out OUT_USB  &out OUT_BLE  &none        &none  &none      &bt BT_CLR  &none       &rgb_ug RGB_MEFS_CMD 5  &none  &none       &none       &none  &none  &none
-&none  &none         &none         &none         &macro_ver    &none                             &none      &none                                           &none  &none       &none       &none  &none  &none
-&none  &none         &none         &none         &none                       &none        &none  &none      &none       &bl BL_TOG  &rgb_ug RGB_TOG                &bl BL_INC  &bl BL_DEC  &none  &none  &none
-            >;
-        };
-
-        layer_Number_Row_Mod {
-            bindings = <
-&trans  &trans  &trans  &kp KP_N0  &kp KP_N5  &kp KP_DOT  &trans                                      &trans  &trans  &kp C_VOL_DN  &kp LS(C_VOL_UP)  &kp C_MUTE  &kp LC(F12)  &trans
-&trans  &trans  &trans  &trans     &trans     &trans      &trans                                      &trans  &trans  &trans        &trans            &trans      &trans       &trans
-&trans  &trans  &trans  &trans     &trans     &trans      &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans        &trans            &trans      &trans       &trans
-&trans  &trans  &trans  &trans     &trans     &trans                      &trans      &trans                  &trans  &trans        &trans            &trans      &trans       &trans
-&trans  &trans  &trans  &trans     &trans                 &trans  &trans  &trans      &trans  &trans  &trans          &trans        &trans            &trans      &trans       &trans
-            >;
-        };
-    };
-};
+{
+  "keyboard": "adv360",
+  "keymap": "default",
+  "layout": "LAYOUT",
+  "layer_names": [
+    "base",
+    "keypad",
+    "fn",
+    "mod"
+  ],
+  "layers": [
+    [
+      "&kp EQUAL ", "&kp N1    ", "&kp N2   ", "&kp N3   ", "&kp N4     ", "&kp N5 ", "&tog 1                                                                            ", "&mo 3  ", "&kp N6 ", "&kp N7 ", "&kp N8    ", "&kp N9   ", "&kp N0   ", "&kp MINUS",
+      "&kp TAB   ", "&kp Q     ", "&kp W    ", "&kp E    ", "&kp R      ", "&kp T  ", "&none                                                                             ", "&none  ", "&kp Y  ", "&kp U  ", "&kp I     ", "&kp O    ", "&kp P    ", "&kp BSLH",
+      "&kp ESC   ", "&kp A     ", "&kp S    ", "&kp D    ", "&kp F      ", "&kp G  ", "&none           ", "&kp LCTRL ", "&kp LALT ", "&kp LGUI  ", "&kp RCTRL",             "&none  ", "&kp H  ", "&kp J  ", "&kp K     ", "&kp L    ", "&kp SEMI ", "&kp SQT",
+      "&kp LSHFT ", "&kp Z     ", "&kp X    ", "&kp C    ", "&kp V      ", "&kp B   ",                                  "&kp HOME ", "&kp PG_UP ",                          "&kp N  ", "&kp M  ", "&kp COMMA ", "&kp DOT  ", "&kp FSLH ", "&kp RSHFT",
+      "&mo 2     ", "&kp GRAVE ", "&kp CAPS ", "&kp LEFT ", "&kp RIGHT                   ", "&kp BSPC  ", "&kp DEL   ", "&kp END  ", "&kp PG_DN ", "&kp ENTER ", "&kp SPACE                    ", "&kp UP ", "&kp DOWN  ", "&kp LBKT ", "&kp RBKT ", "&mo 2"
+    ], [
+      "&kp EQUAL ", "&kp N1    ", "&kp N2   ", "&kp N3   ", "&kp N4     ", "&kp N5 ", "&trans                                                                          ", "&mo 3  ", "&kp N6 ", "&kp KP_NUM ", "&kp KP_EQUAL ", "&kp KP_DIVIDE ", "&kp KP_MULTIPLY ", "&kp MINUS",
+      "&kp TAB   ", "&kp Q     ", "&kp W    ", "&kp E    ", "&kp R      ", "&kp T  ", "&none                                                                           ", "&none  ", "&kp Y  ", "&kp KP_N7  ", "&kp KP_N8    ", "&kp KP_N9     ", "&kp KP_MINUS    ", "&kp BSLH",
+      "&kp ESC   ", "&kp A     ", "&kp S    ", "&kp D    ", "&kp F      ", "&kp G  ", "&none          ", "&kp LCTRL ", "&kp LALT ", "&kp LGUI  ", "&kp RCTRL           ", "&none  ", "&kp H  ", "&kp KP_N4  ", "&kp KP_N5    ", "&kp KP_N6     ", "&kp KP_PLUS     ", "&kp SQT",
+      "&kp LSHFT ", "&kp Z     ", "&kp X    ", "&kp C    ", "&kp V      ", "&kp B        ",                            "&kp HOME ", "&kp PG_UP "                                   , "&kp N  ", "&kp KP_N1  ", "&kp KP_N2    ", "&kp KP_N3     ", "&kp KP_ENTER    ", "&kp RSHFT",
+      "&mo 2     ", "&kp GRAVE ", "&kp CAPS ", "&kp LEFT ", "&kp RIGHT                   ", "&kp BSPC ", "&kp DEL   ", "&kp END  ", "&kp PG_DN ", "&kp ENTER ", "&kp KP_N0                    ", "&kp UP     ", "&kp DOWN     ", "&kp KP_DOT    ", "&kp RBKT        ", "&mo 2"
+    ], [
+      "&kp F1    ", "&kp F2    ", "&kp F3   ", "&kp F4   ", "&kp F5     ", "&kp F6 ", "&tog 1                                                                       ", "&mo 3  ", "&kp F7 ", "&kp F8 ", "&kp F9    ", "&kp F10  ", "&kp F11  ", "&kp F12",
+      "&trans    ", "&trans    ", "&trans   ", "&trans   ", "&trans     ", "&trans ", "&none                                                                        ", "&none  ", "&trans ", "&trans ", "&trans    ", "&trans   ", "&trans   ", "&trans ",
+      "&trans    ", "&trans    ", "&trans   ", "&trans   ", "&trans     ", "&trans ", "&none          ", "&trans    ", "&trans   ", "&trans    ", "&trans           ", "&none  ", "&trans ", "&trans ", "&trans    ", "&trans   ", "&trans   ", "&trans ",
+      "&trans    ", "&trans    ", "&trans   ", "&trans   ", "&trans     ", "&trans       ",                            "&trans   ", "&trans    ",                                 "&trans ", "&trans ", "&trans    ", "&trans   ", "&trans   ", "&trans ",
+      "&trans    ", "&trans    ", "&trans   ", "&trans   ", "&trans                      ", "&trans   ", "&trans    ", "&trans   ", "&trans    ", "&trans    ", "&trans                   ", "&trans ", "&trans    ", "&trans   ", "&trans   ", "&trans"
+    ], [
+      "&none ", "&bt BT_SEL 0 ", "&bt BT_SEL 1 ", "&bt BT_SEL 2 ", "&bt BT_SEL 3 ", "&bt BT_SEL 4 ", "&none                                                                                        ", "&trans        ", "&none        ", "&none        ", "&none        ", "&none        ", "&none        ", "&none",
+      "&none ", "&none        ", "&none        ", "&none        ", "&none        ", "&none        ", "&bootloader                                                                                  ", "&bootloader   ", "&none        ", "&none        ", "&none        ", "&none        ", "&none        ", "&none",
+      "&none ", "&none        ", "&none        ", "&none        ", "&none        ", "&none        ", "&none                ", "&none", "&none ", "&bt BT_CLR ", "&none ",                             "&rgb_ug RGB_MEFS_CMD 5 ", "&none        ", "&none        ", "&none        ", "&none        ", "&none        ", "&none",
+      "&none ", "&none        ", "&none        ", "&none        ", "&macro_ver   ", "&none                                          ", "&none ", "&none ",                                                              "&none        ", "&none        ", "&none        ", "&none        ", "&none        ", "&none",
+      "&none ", "&none        ", "&none        ", "&none        ", "&none                                         ", "&none", "&none", "&none ", "&none      ", "&bl BL_TOG ", "&rgb_ug RGB_TOG                                ", "&bl BL_INC   ", "&bl BL_DEC   ", "&none        ", "&none        ", "&none"
+    ]
+  ]
+}
