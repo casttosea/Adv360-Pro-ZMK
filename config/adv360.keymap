@@ -56,7 +56,7 @@
         control__a_sw {
             bindings = <&tog 6>;
             key-positions = <2 3>;
-            layers = <0 7 1>;
+            layers = <0 7 1 6>;
         };
 
         sd_toMacro {
@@ -67,15 +67,14 @@
         };
 
         mouseTog_combo {
-            bindings = <&tog 4>;
+            bindings = <&tog 3>;
             key-positions = <55 50>;
             layers = <0 4 1 7 2>;
         };
 
         fnbk_spc {
-            bindings = <&tog 8>;
+            bindings = <&trans>;
             key-positions = <60 65>;
-            layers = <0 5 7 8 1>;
         };
     };
 
@@ -108,11 +107,11 @@
 
         default_layer {
             bindings = <
-&kp EQUAL  &kp N1     &kp N2    &kp N3    &kp N4     &kp N5  &tog 5                                                        &mo 5      &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &kp MINUS
-&kp TAB    &kp Q      &kp W     &kp E     &kp R      &kp T   &tog 1                                                        &sl 2      &kp Y   &kp U   &kp I      &kp O     &kp P     &kp BSLH
-&kp ESC    &kp A      &kp S     &kp D     &kp F      &kp G   &tog 4         &kp LCTRL  &kp LALT      &kp LGUI   &kp RCTRL  &tog 4     &kp H   &kp J   &kp K      &kp L     &kp SEMI  &kp SQT
+&kp EQUAL  &kp N1     &kp N2    &kp N3    &kp N4     &kp N5  &tog 1                                                        &mo 5      &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &kp MINUS
+&kp TAB    &kp Q      &kp W     &kp E     &kp R      &kp T   &tog 3                                                        &sl 2      &kp Y   &kp U   &kp I      &kp O     &kp P     &kp BSLH
+&kp ESC    &kp A      &kp S     &kp D     &kp F      &kp G   &tog 2         &kp LCTRL  &kp LALT      &kp LGUI   &kp RCTRL  &tog 3     &kp H   &kp J   &kp K      &kp L     &kp SEMI  &kp SQT
 &kp LSHFT  &kp Z      &kp X     &kp C     &kp V      &kp B                             &kp HOME      &kp PG_UP                        &kp N   &kp M   &kp COMMA  &kp DOT   &kp FSLH  &kp K_CONTEXT_MENU
-&sl 5      &kp GRAVE  &kp CAPS  &kp LEFT  &kp RIGHT          &kp BACKSPACE  &kp DEL    &kp END       &kp PG_DN  &kp ENTER  &kp SPACE          &kp UP  &kp DOWN   &kp LBKT  &kp RBKT  &kp RSHFT
+&sl 4      &kp GRAVE  &kp CAPS  &kp LEFT  &kp RIGHT          &kp BACKSPACE  &kp DEL    &kp END       &kp PG_DN  &kp ENTER  &kp SPACE          &kp UP  &kp DOWN   &kp LBKT  &kp RBKT  &kp RSHFT
             >;
         };
 
@@ -138,19 +137,19 @@
 
         MouseLayer {
             bindings = <
-&none    &none  &none  &kp KP_N0     &kp KP_N5    &kp KP_DOT  &none                                        &none       &none    &kp KP_NUM  &none      &none      &none         &none
-&none    &none  &none  &none         &none        &none       &trans                                       &trans      &none    &none       &kp KP_N8  &none      &kp KP_MINUS  &none
-&kp ESC  &none  &none  &kp KP_MINUS  &kp KP_PLUS  &tog 4      &tog 4     &trans  &none      &none  &trans  &tog 4      &kp ESC  &kp KP_N4   &kp KP_N2  &kp KP_N6  &kp KP_PLUS   &none
-&tog 4   &none  &none  &none         &none        &none                          &none      &none                      &tog 4   &none       &none      &none      &none         &kp SCROLLLOCK
-&trans   &none  &none  &kp LEFT      &kp RIGHT                &kp KP_N0  &none   &none      &none  &trans  &kp KP_DOT           &kp UP      &kp DOWN   &none      &none         &kp SLCK
+&none    &trans  &trans          &trans          &trans           &trans  &none                                         &none      &none    &trans          &none           &none            &none  &none
+&none    &none   &none           &msc SCRL_UP    &none            &none   &trans                                        &trans     &none    &none           &mmv MOVE_UP    &none            &none  &none
+&kp ESC  &none   &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_RIGHT  &tog 3  &tog 3     &trans  &trans      &none  &trans  &trans     &kp ESC  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &none  &none
+&tog 3   &none   &none           &none           &none            &none                      &none       &none                     &tog 3   &none           &none           &none            &none  &trans
+&trans   &none   &none           &kp LEFT        &kp RIGHT                &mkp LCLK  &none   &none       &none  &trans  &mkp RCLK           &kp UP          &kp DOWN        &none            &none  &trans
             >;
         };
 
         layer_fn {
             bindings = <
-&none   &kp F1  &kp F2  &kp F3                   &kp F4  &kp F5  &tog 5                                         &mo 6   &kp F1   &kp F2   &kp F3   &kp F4   &kp F5   &none
-&trans  &trans  &trans  &trans                   &trans  &trans  &tog 7                                         &none   &kp F6   &kp F7   &kp F8   &kp F9   &kp F10  &none
-&trans  &trans  &trans  &trans                   &none   &trans  &none   &kt LCTRL  &trans      &trans  &trans  &none   &kp F11  &kp F12  &kp F13  &kp F14  &kp F15  &trans
+&none   &kp F1  &kp F2  &kp F3                   &kp F4  &kp F5  &trans                                         &trans  &kp F1   &kp F2   &kp F3   &kp F4   &kp F5   &none
+&trans  &trans  &trans  &trans                   &trans  &trans  &trans                                         &trans  &kp F6   &kp F7   &kp F8   &kp F9   &kp F10  &none
+&trans  &trans  &trans  &trans                   &none   &trans  &trans  &kt LCTRL  &trans      &trans  &trans  &trans  &kp F11  &kp F12  &kp F13  &kp F14  &kp F15  &trans
 &trans  &trans  &none   &new_behavior_mod_morph  &trans  &trans                     &trans      &trans                  &kp F16  &kp F17  &kp F18  &kp F19  &kp F20  &trans
 &to 0   &trans  &trans  &trans                   &trans          &trans  &trans     &trans      &trans  &trans  &trans           &kp F21  &kp F22  &kp F23  &kp F24  &trans
             >;
@@ -158,7 +157,7 @@
 
         mod {
             bindings = <
-&none           &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &none                                                  &mo 5                   &none  &none       &none       &none  &none  &none
+&none           &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &trans                                                 &trans                  &none  &none       &none       &none  &none  &none
 &studio_unlock  &none         &none         &none         &none         &none         &bootloader                                            &bootloader             &none  &none       &none       &none  &none  &none
 &none           &none         &none         &out OUT_TOG  &out OUT_USB  &out OUT_BLE  &none        &none  &none      &bt BT_CLR  &none       &rgb_ug RGB_MEFS_CMD 5  &none  &none       &none       &none  &none  &none
 &kp ESC         &none         &none         &none         &macro_ver    &none                             &none      &none                                           &none  &none       &none       &none  &none  &none
@@ -168,11 +167,11 @@
 
         layer_Number_Row_Mod {
             bindings = <
-&trans  &trans  &trans  &kp KP_N0  &kp KP_N5        &kp KP_DOT  &trans                                      &trans  &trans  &kp C_VOL_DN  &kp LS(C_VOL_UP)  &kp C_MUTE  &kp LC(F12)  &trans
-&trans  &trans  &trans  &trans     &trans           &trans      &trans                                      &trans  &trans  &trans        &trans            &trans      &trans       &trans
-&trans  &trans  &trans  &trans     &trans           &trans      &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans        &trans            &trans      &trans       &trans
-&trans  &trans  &trans  &trans     &trans           &trans                      &trans      &trans                  &trans  &trans        &trans            &trans      &trans       &trans
-&trans  &trans  &trans  &trans     &msc SCRL_RIGHT              &trans  &trans  &trans      &trans  &trans  &trans          &trans        &trans            &trans      &trans       &trans
+&trans  &trans  &trans  &kp KP_N0  &kp KP_N5  &kp KP_DOT  &trans                                      &trans  &trans  &kp C_VOL_DN  &kp LS(C_VOL_UP)  &kp C_MUTE  &kp LC(F12)  &trans
+&trans  &trans  &trans  &trans     &trans     &trans      &trans                                      &trans  &trans  &trans        &trans            &trans      &trans       &trans
+&trans  &trans  &trans  &trans     &trans     &trans      &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans        &trans            &trans      &trans       &trans
+&trans  &trans  &trans  &trans     &trans     &trans                      &trans      &trans                  &trans  &trans        &trans            &trans      &trans       &trans
+&trans  &trans  &trans  &trans     &trans                 &trans  &trans  &trans      &trans  &trans  &trans          &trans        &trans            &trans      &trans       &trans
             >;
         };
 
